@@ -28,7 +28,7 @@ class OrderProductResource extends JsonResource
                 ],
                 'product' => [
                     'links' => [
-                        'related' => route('products.show', ['product' => $this->status_id]),
+                        'related' => route('products.show', ['product' => $this->product_id]),
                     ],
                 ],
             ],

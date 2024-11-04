@@ -1,0 +1,1045 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ремонт часов на Алексеевской",
+        "contact": {
+            "name": "Анастасия Паршенкова",
+            "email": "parshenkova.anastasya@yandex.ru"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/orders/": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "description": "Возвращает перечень заказов",
+                "operationId": "acf76e3d313115c8d911054877dec32e",
+                "responses": {
+                    "200": {
+                        "description": "Перечень заказов",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Заказ не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "description": "Создаёт заказ",
+                "operationId": "69c0ceaab14d4413bc26b6616d0e9110",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Order"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Заказ создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/orders/{order}/": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "description": "Возвращает заказ по идентификатору",
+                "operationId": "0ced17f2d4e76d75e39b6e4e5227ad56",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/order"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Заказ",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Заказ не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Order"
+                ],
+                "description": "Удаляет запись о заказе",
+                "operationId": "452181cb5ee4d5740a6c437078b71437",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/order"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Запись о заказе удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Order"
+                ],
+                "description": "Корректирует запись о заказе",
+                "operationId": "2efc465e92b1f73d8f899f8c7d6c0a25",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/order"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Order"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Запись о заказе откорректирована",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/order_product/": {
+            "get": {
+                "tags": [
+                    "OrderProduct"
+                ],
+                "description": "Возвращает перечень закзанных продуктов",
+                "operationId": "3742f71e69b523673850b4dc365b9647",
+                "responses": {
+                    "200": {
+                        "description": "Перечень закзанных продуктов",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Закзанный продукт не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "OrderProduct"
+                ],
+                "description": "Создаёт закзанный продукт",
+                "operationId": "7d0efcf81b253d13aea707f037b24d9a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderProduct"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Закзанный продукт создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/order_product/{order_product}/": {
+            "get": {
+                "tags": [
+                    "OrderProduct"
+                ],
+                "description": "Возвращает закзанный продукт по идентификатору",
+                "operationId": "69b555cf527dd189e131df2e73021340",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/order_product"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Закзанный продукт",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Закзанный продукт не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "OrderProduct"
+                ],
+                "description": "Удаляет запись о заказанном продукте",
+                "operationId": "cfa459d168784d2f5ee64c182d2f1199",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/order_product"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Запись о заказанном продукте удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "OrderProduct"
+                ],
+                "description": "Корректирует запись о заказанном продукте",
+                "operationId": "47cd4678c8973797fba0999517d8e370",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/order_product"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderProduct"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Запись о заказанном продукте откорректирована",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/products/": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Возвращает перечень товаров",
+                "operationId": "a70e7d05d2d37b125697c9e7a5e57c7c",
+                "responses": {
+                    "200": {
+                        "description": "Перечень товаров",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Товар не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Создаёт запись о товаре",
+                "operationId": "4a7fe0fee0b035a362bc86505d6bc08f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Запись о товаре создана",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/products/{product}/": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Возвращает товар по идентификатору",
+                "operationId": "d412dc47e985603132178e1387b037c1",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Товар",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Товар не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Удаляет запись о товаре",
+                "operationId": "ecd2256be348d90699334e35d9395fe6",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Запись о товаре удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Корректирует запись о товаре",
+                "operationId": "70bc9c35a32df84550fdd73f5e255c9d",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Запись о товаре откорректирована",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/reviewes/": {
+            "get": {
+                "tags": [
+                    "Review"
+                ],
+                "description": "Возвращает перечень отзывов",
+                "operationId": "83e9f7cb340615664bc5c0666f4081fd",
+                "responses": {
+                    "200": {
+                        "description": "Перечень отзывов",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Отзыв не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Review"
+                ],
+                "description": "Создаёт отзыв",
+                "operationId": "e41c88949b628c3a2e342b9c2a6a7f53",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Review"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Отзыв создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/reviewes/{review}/": {
+            "get": {
+                "tags": [
+                    "Review"
+                ],
+                "description": "Возвращает отзыв по идентификатору",
+                "operationId": "8a299749a7e3086f087144ef68bfd8ec",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/review"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Отзыв",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Отзыв не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Review"
+                ],
+                "description": "Удаляет запись об отзыве",
+                "operationId": "1d7eec5b3c17e263798f05473daea5a4",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/review"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Запись об отзыве удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Review"
+                ],
+                "description": "Корректирует запись об отзыве",
+                "operationId": "390b7a877568ddc465123dbd2d8ca91f",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/review"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Review"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Запись об отзыве откорректирована",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/statuses/": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "description": "Возвращает перечень статусов",
+                "operationId": "b0ce668e879db23f3aca6cd047272eca",
+                "responses": {
+                    "200": {
+                        "description": "Перечень статусов",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Статус не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Status"
+                ],
+                "description": "Создаёт статус",
+                "operationId": "4e6de9f71f0d66e49524b2b9afb1d60b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Type"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Статус создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/statuses/{status}/": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "description": "Возвращает статус по идентификатору",
+                "operationId": "c7624059bef7d84d3c346cef01c73249",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/status"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Статус",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Статус не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Status"
+                ],
+                "description": "Удаляет запись о статусе",
+                "operationId": "3c3bb30d470c1108299146c8b6e1aa31",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/status"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Запись о статусе удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Status"
+                ],
+                "description": "Корректирует запись о статусе",
+                "operationId": "76d6eb1652d1d8eab7f80eb626dde6ca",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/status"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Status"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Запись о стастусе откорректирована",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/types/": {
+            "get": {
+                "tags": [
+                    "Type"
+                ],
+                "description": "Возвращает перечень типов",
+                "operationId": "b494032c6d3227acb4b5ff2f6684411b",
+                "responses": {
+                    "200": {
+                        "description": "Перечень типов",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Тип не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Type"
+                ],
+                "description": "Создаёт тип",
+                "operationId": "99078134d285601ed8fd1f4ba4a04361",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Type"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Тип создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/types/{type}/": {
+            "get": {
+                "tags": [
+                    "Type"
+                ],
+                "description": "Возвращает тип по идентификатору",
+                "operationId": "5f1f4f6e35493e875a4b35a0fd9d2c90",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/type"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Тип",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Тип не найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Type"
+                ],
+                "description": "Удаляет запись о типе",
+                "operationId": "23f0d04f7d86d132409da86599741067",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/type"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Запись о типе удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Type"
+                ],
+                "description": "Корректирует запись о типе",
+                "operationId": "5013003212006b65de27e66062b138ca",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/type"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Type"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Запись о типе откорректирована",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Order": {
+                "title": "Order",
+                "required": [
+                    "total_price",
+                    "user_id"
+                ],
+                "properties": {
+                    "total_price": {
+                        "description": "Общая цена",
+                        "type": "integer",
+                        "format": "float"
+                    },
+                    "user_id": {
+                        "description": "ID пользователя",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderProduct": {
+                "title": "OrderProduct",
+                "required": [
+                    "quantity",
+                    "order_id",
+                    "product_id"
+                ],
+                "properties": {
+                    "quantity": {
+                        "description": "Количество",
+                        "type": "integer"
+                    },
+                    "order_id": {
+                        "description": "ID заказа",
+                        "type": "integer"
+                    },
+                    "product_id": {
+                        "description": "ID продукта",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Product": {
+                "title": "Product",
+                "required": [
+                    "name",
+                    "photo",
+                    "price",
+                    "quantity",
+                    "type_id"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Название продукта",
+                        "type": "string"
+                    },
+                    "price": {
+                        "description": "Цена продукта",
+                        "type": "integer",
+                        "format": "float"
+                    },
+                    "properties": {
+                        "description": "Описание продукта",
+                        "type": "string",
+                        "format": "json"
+                    },
+                    "quantity": {
+                        "description": "Количество на складе",
+                        "type": "integer"
+                    },
+                    "available": {
+                        "description": "Доступность продукта",
+                        "type": "boolean"
+                    },
+                    "type_id": {
+                        "description": "ID типа продукта",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Review": {
+                "title": "Review",
+                "required": [
+                    "content",
+                    "rating",
+                    "order_product_id"
+                ],
+                "properties": {
+                    "content": {
+                        "description": "Текст отзыва",
+                        "type": "string"
+                    },
+                    "rating": {
+                        "description": "Оценка",
+                        "type": "integer"
+                    },
+                    "order_product_id": {
+                        "description": "ID заказанного продукта",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Status": {
+                "title": "Status",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Название статуса",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Type": {
+                "title": "Type",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Название типа",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {
+            "order": {
+                "name": "order",
+                "in": "path",
+                "description": "Первичный ключ"
+            },
+            "order_product": {
+                "name": "order_product",
+                "in": "path",
+                "description": "Первичный ключ"
+            },
+            "product": {
+                "name": "product",
+                "in": "path",
+                "description": "Первичный ключ"
+            },
+            "review": {
+                "name": "review",
+                "in": "path",
+                "description": "Первичный ключ"
+            },
+            "status": {
+                "name": "status",
+                "in": "path",
+                "description": "Первичный ключ"
+            },
+            "type": {
+                "name": "type",
+                "in": "path",
+                "description": "Первичный ключ"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Order",
+            "description": "Order"
+        },
+        {
+            "name": "OrderProduct",
+            "description": "OrderProduct"
+        },
+        {
+            "name": "Product",
+            "description": "Product"
+        },
+        {
+            "name": "Review",
+            "description": "Review"
+        },
+        {
+            "name": "Status",
+            "description": "Status"
+        },
+        {
+            "name": "Type",
+            "description": "Type"
+        }
+    ]
+}

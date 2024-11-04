@@ -25,14 +25,12 @@ class StoreProductRequest extends FormRequest
             'name' => [
                 'max:105',
                 'string',
-                'required',
             ],
             'photo' => [
                 'image',
                 'max:5120',
                 'mimes:gif,jpeg,png,webp',
                 'min:1', 
-                'required',
             ],
             'price' => [
                 // проверить можно ли добавить разные варианты после запятой

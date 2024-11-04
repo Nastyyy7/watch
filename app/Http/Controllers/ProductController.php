@@ -8,12 +8,26 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
+use OpenApi\Attributes as OA;
 
+#[OA\Parameter(name: 'product', description: 'Первичный ключ', in: 'path')]
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    #[OA\Get(
+        tags: ['Product'],
+        description: 'Возвращает перечень товаров',
+        path: '/api/v1/products/',
+    )]
+    #[OA\Response(
+        content: new OA\JsonContent(),
+        description: 'Перечень товаров',
+        response: 200,
+    )]
+    #[OA\Response(  
+        content: new OA\JsonContent(),
+        description: 'Товар не найден',
+        response: 404,
+    )]
     public function index(Request $request)
     {
         $query = Product::query();
@@ -45,9 +59,23 @@ class ProductController extends Controller
         // /products?sort=-name,price&filter[name]=%батарейка%&filter[price][>]=1&filter[price][<]=100
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    #[OA\Post(
+        tags: ['Product'],
+        description: 'Создаёт запись о товаре',
+        path: '/api/v1/products/',
+        requestBody: new OA\RequestBody(
+            content: new OA\MediaType(
+                mediaType: 'application/x-www-form-urlencoded',
+                schema: new OA\Schema(ref: '#/components/schemas/Product'),
+            ),
+            required: true,
+        ),
+    )]
+    #[OA\Response(
+        content: new OA\JsonContent(),
+        description: 'Запись о товаре создана',
+        response: 201,
+    )]
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
@@ -60,17 +88,49 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    #[OA\Get(
+        tags: ['Product'],
+        description: 'Возвращает товар по идентификатору',
+        parameters: [
+            new OA\Parameter(ref: '#/components/parameters/product'),
+        ],
+        path: '/api/v1/products/{product}/',
+    )]
+    #[OA\Response(
+        content: new OA\JsonContent(),
+        description: 'Товар',
+        response: 200,
+    )]
+    #[OA\Response(
+        content: new OA\JsonContent(),
+        description: 'Товар не найден',
+        response: 404,
+    )]
     public function show(Product $product)
     {
         return new ProductResource($product);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    #[OA\Patch(
+        tags: ['Product'],
+        description: 'Корректирует запись о товаре',
+        parameters: [
+            new OA\Parameter(ref: '#/components/parameters/product'),
+        ],
+        path: '/api/v1/products/{product}/',
+        requestBody: new OA\RequestBody(
+            content: new OA\MediaType(
+                mediaType: 'application/x-www-form-urlencoded',
+                schema: new OA\Schema(ref: '#/components/schemas/Product'),
+            ),
+            required: false,
+        ),
+    )]
+    #[OA\Response(
+        content: new OA\JsonContent(),
+        description: 'Запись о товаре откорректирована',
+        response: 204,
+    )]
     public function update(StoreProductRequest $request, Product $product)
     {
         $data = $request->validated();
@@ -79,9 +139,19 @@ class ProductController extends Controller
         return response()->noContent(204);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    #[OA\Delete(
+        tags: ['Product'],
+        description: 'Удаляет запись о товаре',
+        parameters: [
+            new OA\Parameter(ref: '#/components/parameters/product'),
+        ],
+        path: '/api/v1/products/{product}/',
+    )]
+    #[OA\Response(
+        content: new OA\JsonContent(),
+        description: 'Запись о товаре удалена',
+        response: 204,
+    )]
     public function destroy(Product $product)
     {
         $product->delete();

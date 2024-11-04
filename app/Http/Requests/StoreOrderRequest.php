@@ -26,7 +26,6 @@ class StoreOrderRequest extends FormRequest
                 'decimal:0,2',
                 'max:999999999999999999.99',
                 'min:0',
-                'required',
             ],
                 // 'pickup_code' => [
                 //     'integer',
@@ -36,7 +35,6 @@ class StoreOrderRequest extends FormRequest
                 // ],
             'user_id' => [
                 'exists:users,id',
-                'required',
             ],
         ];
 

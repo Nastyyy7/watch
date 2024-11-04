@@ -45,7 +45,7 @@ class OrderStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOrderStatusRequest $request, OrderStatus $orderStatus)
+    public function update(StoreOrderStatusRequest $request, OrderStatus $orderStatus)
     {
         $data = $request->validated();
         $orderStatus->update($data);

@@ -24,11 +24,9 @@ class StoreOrderStatusRequest extends FormRequest
         return [
             'status_id' => [
                 'exists:statuses,id',
-                'required',
             ],
             'order_id' => [
                 'exists:orders,id',
-                'required',
             ],
         ];
 

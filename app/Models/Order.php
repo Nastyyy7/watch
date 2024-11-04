@@ -6,11 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OpenApi\Attributes as OA;
 
-
+#[OA\Schema(
+    schema: 'Order',
+    title: 'Order',
+    type: 'object',
+    required: ['total_price', 'user_id'],
+)]
 class Order extends Model
 {
     use HasFactory;
+
+    #[OA\Property(description: 'Общая цена', type: 'integer', format: 'float')]
+    protected string $total_price;
+
+    #[OA\Property(description: 'ID пользователя', type: 'integer')]
+    protected int $user_id;
 
     protected $fillable = [
         'total_price',

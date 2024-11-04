@@ -26,17 +26,14 @@ class StoreOrderProductRequest extends FormRequest
                 'integer',
                 'max:2147483647',
                 'min:0',
-                'required',
             ],
             'order_id' => [
                 'exists:orders,id',
                 // 'unique:order_product,order_id',
-                'required',
             ],
             'product_id' => [
                 'exists:products,id',
                 // 'unique:order_product,product_id',
-                'required',
             ],
         ];
 
