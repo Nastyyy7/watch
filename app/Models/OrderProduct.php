@@ -20,6 +20,9 @@ class OrderProduct extends Pivot
     #[OA\Property(description: 'Количество', type: 'integer')]
     protected int $quantity;
 
+    #[OA\Property(description: 'Информация о заказе', type: 'string', format: 'json')]
+    protected string $properties;
+
     #[OA\Property(description: 'ID заказа', type: 'integer')]
     protected int $order_id;
 
@@ -28,6 +31,7 @@ class OrderProduct extends Pivot
 
     protected $fillable = [
         'quantity',
+        'properties',
         'order_id',
         'product_id'
     ];

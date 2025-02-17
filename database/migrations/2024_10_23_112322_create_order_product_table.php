@@ -16,6 +16,9 @@ return new class extends Migration
             $table->integer('quantity')
                 ->default(0)
             ;
+            $table->jsonb('properties')
+            ->nullable()
+            ;
             $table->bigInteger('order_id')
                 ->unsigned()
             ;

@@ -28,7 +28,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->unique()->word(),
             'photo' => $filename,
-            'price' => $this->faker->randomFloat(2, 0.01, 999999999.99),
+            'price' => $this->faker->randomFloat(2, 0.01, 999.99),
             'quantity' => $this->faker->numberBetween(1, 149),
             'available' => true,
             

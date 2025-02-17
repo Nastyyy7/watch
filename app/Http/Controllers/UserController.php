@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -21,7 +23,20 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $data = $request->validated();
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            // 'remember_token' => Str::random(10),
+            // 'remember_token' => random_bytes(10),
+        ]);
+        return response()->noContent(201)->withHeaders([
+            'Location' => route('users.show', [
+                'user' => $user->id,
+            ]),
+        ]);
     }
 
     /**

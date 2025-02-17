@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
     {
         $types = Type::all();
         Product::factory()
-            ->count(1)
+            ->count(5)
             ->for(
                 $types->isEmpty() ? Type::factory() : $types->random()
             )

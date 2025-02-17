@@ -29,10 +29,32 @@ class TypeControllerTest extends TestCase
 
     public function testShow()
     {
-        $type = Type::all()->random(1)->firstOrFail();
+        $type=Type::factory()->create();
         $response = $this->get(route('types.show', [
             'type' => $type->id,
         ]));
         $response->assertStatus(200);
     }
+
+    public function testUpdate()
+    {
+        $type=Type::factory()->create();
+        $data = $type->toArray();
+        $data['name']='dsdfgh';
+        var_dump($data);
+        $response = $this->patch(route('types.update', [
+            'type' => $type->id,
+        ]),$data);
+        $response->assertStatus(204);
+    } 
+
+    public function testDestroy()
+    {
+        $type=Type::factory()->create();
+        $response = $this->delete(route('types.destroy', [
+            'type' => $type->id,
+        ]));
+        $response->assertStatus(204);
+    }  
+      
 }

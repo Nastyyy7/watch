@@ -21,8 +21,38 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rules = [
+            'name' => [
+                'max:255',
+                'string',
+            ],
+            'email' => [
+                'max:255',
+                'string',
+                'unique:users,email',
+            ],
+            'password' => [
+                'max:255',
+                'string',
+            ],
+        ];
+
+        if ($this->getMethod() == 'POST') {
+            array_push($rules['name'], 'required');
+            array_push($rules['email'], 'required');
+            array_push($rules['password'], 'required');
+        }
+
+        return $rules;
+    }
+
+    public function messages(): array
+    {
         return [
-            //
+            'name.required' => 'Поле имени обязательно для заполнения',
+            'email.required' => 'Поле почты обязательно для заполнения',
+            'password.required' => 'Поле пароля обязательно для заполнения',
+            'email.unique' => 'Такой пользователь уже существует',
         ];
     }
 }

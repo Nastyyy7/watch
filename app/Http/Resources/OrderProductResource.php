@@ -19,6 +19,7 @@ class OrderProductResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => [
                 'quantity' => (int) $this->quantity,
+                'properties' => $this->properties,
             ],
             'relationships' => [
                 'order' => [

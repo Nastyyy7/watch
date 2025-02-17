@@ -37,23 +37,21 @@ class ProductController extends Controller
         }
         if (isset($filter['price'])) {
             if (isset($filter['price']['>']))
-            $query->where('price', '>' , $filter['price']);
-        }
-        if (isset($filter['price'])) {
+            $query->where('price', '>' , $filter['price']['>']);
             if (isset($filter['price']['<']))
-            $query->where('price', '<' , $filter['price']);
+            $query->where('price', '<' , $filter['price']['<']);
         }
         $storeSort = explode(',', $request->input('sort'));
         foreach ($storeSort as $value) {
             $pos = strpos($value, '-') === 0;
             $norm = str_replace('-', '', $value);
             $arr=['name','price'];
-            if (in_array($norm, $arr)) {
-                $query->orderBy($arr, $pos ? 'DESC' : 'ASC');
+            if (in_array($norm, $arr, true)) {
+                $query->orderBy($norm, $pos ? 'DESC' : 'ASC');
             }
         }
         $query->get();
-        $products = $query->paginate(2);
+        $products = $query->paginate(4);
         return new ProductCollection($products);
         // пример https запроса
         // /products?sort=-name,price&filter[name]=%батарейка%&filter[price][>]=1&filter[price][<]=100

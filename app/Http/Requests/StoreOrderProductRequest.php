@@ -27,6 +27,9 @@ class StoreOrderProductRequest extends FormRequest
                 'max:2147483647',
                 'min:0',
             ],
+            'properties' => [
+                'json'
+            ],
             'order_id' => [
                 'exists:orders,id',
                 // 'unique:order_product,order_id',
@@ -54,6 +57,7 @@ class StoreOrderProductRequest extends FormRequest
             'quantity.integer' => 'Поле должен быть числом',
             'quantity.max' => 'Число должно быть не больше 2147483647',
             'quantity.min' => 'Число должно быть не меньше 0',
+            'properties.json' => 'Поле должно быть в формате json',
             'order_id.exists' => 'Такого заказа не существует',
             'product_id.exists' => 'Такого продукта не существует',
         ];
