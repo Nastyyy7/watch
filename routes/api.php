@@ -33,7 +33,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::apiResource('products', ProductController::class);
+    Route::apiResource('products', ProductController::class)->middleware(['auth:sanctum', 'abilities:select-product,delete-product']);
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
     Route::apiResource('types', TypeController::class);
     Route::apiResource('statuses', StatusController::class);
     Route::apiResource('reviews', ReviewController::class);
@@ -46,9 +48,9 @@ Route::prefix('v1')->group(function () {
         ->middleware('guest')
         ->name('register');
 
-    // Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-    //     ->middleware('guest')
-    //     ->name('login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware('guest')
+        ->name('login');
 
     // Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     //     ->middleware('guest')
@@ -59,12 +61,14 @@ Route::prefix('v1')->group(function () {
     //     ->name('password.store');
 
     Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
-        ->middleware(['auth', 'signed', 'throttle:6,1'])
+        ->middleware(['signed', 'throttle:6,1'])
+        // ->middleware(['auth', 'signed', 'throttle:6,1'])
         ->name('verification.verify');
 
-    // Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    //     ->middleware(['auth', 'throttle:6,1'])
-    //     ->name('verification.send');
+    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware(['throttle:6,1'])
+        // ->middleware(['auth', 'throttle:6,1'])
+        ->name('verification.send');
 
     // Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     //     ->middleware('auth')
